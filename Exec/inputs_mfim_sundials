@@ -105,6 +105,4 @@ integration.type = SUNDIALS
 #integration.rk.type = 1
 
 integration.sundials.type = ERK
-
-integration.sundials.method = ARKODE_MIS_KW3
-
+integration.sundials.method = ARKODE_KNOTH_WOLKE_3_3
