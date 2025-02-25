@@ -451,17 +451,17 @@ void main_main (c_FerroX& rFerroX)
                     ar_state[comp].FillBoundary(geom.periodicity());
 		}
 
-#ifdef AMREX_USE_EB
-                ComputePhi_Rho_EB(pMLMG, p_mlebabec, alpha_cc, PoissonRHS, PoissonPhi, PoissonPhi_Prev, PhiErr,
-                                  ar_state, charge_den, e_den, hole_den, MaterialMask, 
-                                  angle_alpha, angle_beta, angle_theta, geom, prob_lo, prob_hi);
-#else
-                ComputePhi_Rho(pMLMG, p_mlabec, alpha_cc, PoissonRHS, PoissonPhi, PoissonPhi_Prev, PhiErr,
-                               ar_state, charge_den, e_den, hole_den, MaterialMask, 
-                               angle_alpha, angle_beta, angle_theta, geom, prob_lo, prob_hi);
-#endif
+// #ifdef AMREX_USE_EB
+//                 ComputePhi_Rho_EB(pMLMG, p_mlebabec, alpha_cc, PoissonRHS, PoissonPhi, PoissonPhi_Prev, PhiErr,
+//                                   ar_state, charge_den, e_den, hole_den, MaterialMask,
+//                                   angle_alpha, angle_beta, angle_theta, geom, prob_lo, prob_hi);
+// #else
+//                 ComputePhi_Rho(pMLMG, p_mlabec, alpha_cc, PoissonRHS, PoissonPhi, PoissonPhi_Prev, PhiErr,
+//                                ar_state, charge_den, e_den, hole_den, MaterialMask,
+//                                angle_alpha, angle_beta, angle_theta, geom, prob_lo, prob_hi);
+// #endif
 
-                ComputeEfromPhi(PoissonPhi, E, angle_alpha, angle_beta, angle_theta, geom, prob_lo, prob_hi);
+//                 ComputeEfromPhi(PoissonPhi, E, angle_alpha, angle_beta, angle_theta, geom, prob_lo, prob_hi);
 
                 if (include_Landau == 1){
                    if(fast_Landau == 1){ 
@@ -481,15 +481,15 @@ void main_main (c_FerroX& rFerroX)
                       }
                    }
                 }   
-                if (include_Elec == 1){ 
-                   if(fast_Elec == 1){
-                      Calculate_Elec(GL_rhs_elec, E, Gamma, tphaseMask);
-                   } else {
+                if (include_Elec == 1){
+                   // if(fast_Elec == 1){
+                   //    Calculate_Elec(GL_rhs_elec, E, Gamma, tphaseMask);
+                   // } else {
                       for (int idim=0; idim<AMREX_SPACEDIM; ++idim) {
                              GL_rhs_elec[idim].setVal(0.);
                       }
-                   }
-                }   
+                   // }
+                }
 
                 // Compute f^n = f(P^n, E^n) 
         	CalculateTDGL_RHS(ar_rhs, GL_rhs_Landau, GL_rhs_grad, GL_rhs_elec, ar_state, E, Gamma, MaterialMask, tphaseMask, angle_alpha, angle_beta, angle_theta, geom);
