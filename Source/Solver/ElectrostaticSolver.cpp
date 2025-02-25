@@ -138,6 +138,7 @@ void ComputeEfromPhi(MultiFab&                 PoissonPhi,
 		const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_lo, 
 		const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_hi)
 {
+        BL_PROFILE("ComputeEfromPhi()");
        // Calculate E from Phi
 
         for ( MFIter mfi(PoissonPhi); mfi.isValid(); ++mfi )
@@ -693,6 +694,8 @@ void ComputePhi_Rho(std::unique_ptr<amrex::MLMG>& pMLMG,
              const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_hi)
 
 {
+    BL_PROFILE("ComputePhi_Rho()");
+
 //Obtain self consisten Phi and rho
     Real tol = 1.e-5;
     Real err = 1.0;
@@ -765,6 +768,8 @@ void ComputePhi_Rho_EB(std::unique_ptr<amrex::MLMG>& pMLMG,
              const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_hi)
 
 {
+    BL_PROFILE("ComputePhi_Rho_EB()");
+
 //Obtain self consisten Phi and rho
     Real tol = 1.e-5;
     Real err = 1.0;

@@ -15,6 +15,7 @@ void CalculateTDGL_RHS(Array<MultiFab, AMREX_SPACEDIM> &GL_rhs,
                 MultiFab& angle_alpha, MultiFab& angle_beta, MultiFab& angle_theta,
                 const Geometry& geom)
 {
+        BL_PROFILE("CalculateTDGL_RHS()");
 //        if (include_Landau == 1){
 //           Calculate_Landau(GL_rhs_Landau, P_old, Gamma, tphaseMask);
 //        }
@@ -75,6 +76,7 @@ void Calculate_Landau(Array<MultiFab, AMREX_SPACEDIM> &GL_rhs_Landau,
                 MultiFab&                       Gamma,
                 MultiFab&                 tphaseMask)
 {
+        BL_PROFILE("Calculate_Landau()");
         // loop over boxes
         for ( MFIter mfi(P_old[0]); mfi.isValid(); ++mfi )
         {
@@ -144,6 +146,7 @@ void Calculate_Grad(Array<MultiFab, AMREX_SPACEDIM> &GL_rhs_grad,
                 MultiFab& angle_alpha, MultiFab& angle_beta, MultiFab& angle_theta,
                 const Geometry& geom)
 {
+        BL_PROFILE("Calculate_Grad()");
         // loop over boxes
         for ( MFIter mfi(P_old[0]); mfi.isValid(); ++mfi )
         {
@@ -262,6 +265,7 @@ void Calculate_Elec(Array<MultiFab, AMREX_SPACEDIM> &GL_rhs_elec,
                 MultiFab&                       Gamma,
                 MultiFab&                 tphaseMask)
 {
+        BL_PROFILE("Calculate_Elec()");
         // loop over boxes
         for ( MFIter mfi(E[0]); mfi.isValid(); ++mfi )
         {
