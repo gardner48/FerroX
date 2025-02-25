@@ -356,7 +356,7 @@ void main_main (c_FerroX& rFerroX)
                 
                 BL_PROFILE_VAR("rhs_fun()",rhs_fast_fun);
 
-                Print() << "Calling rhs_fun at time = " << time << "\n";
+                //Print() << "Calling rhs_fun at time = " << time << "\n";
  
                 // User function to calculate the rhs MultiFab given the state MultiFab
                 for (int idim = 0; idim < AMREX_SPACEDIM; ++idim) {
@@ -429,7 +429,7 @@ void main_main (c_FerroX& rFerroX)
                
                 BL_PROFILE_VAR("rhs_fast_fun()",rhs_fast_fun);
 
-                Print() << "Calling rhs_fast_fun at time = " << time << "\n";
+                //Print() << "Calling rhs_fast_fun at time = " << time << "\n";
  
                 // User function to calculate the rhs MultiFab given the state MultiFab
                 for (int idim = 0; idim < AMREX_SPACEDIM; ++idim) {
