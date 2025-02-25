@@ -324,7 +324,8 @@ void InitializeFerroXNamespace(const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM
      plot_PhiDiff = 1;
      pp.query("plot_PhiDiff",plot_PhiDiff); 
 
-     pp.get("TimeIntegratorOrder",TimeIntegratorOrder);
+     TimeIntegratorOrder = 1;
+     pp.query("TimeIntegratorOrder",TimeIntegratorOrder);
      use_sundials = 0;
      pp.query("use_sundials", use_sundials);
 
