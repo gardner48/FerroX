@@ -83,6 +83,7 @@ mlmg_verbosity = 0
 use_sundials = 1
 using_MRI = 1
 fast_Grad = 1
+fast_Landau = 1
 
 nsteps = 200
 plot_int = 20
