@@ -265,6 +265,7 @@ AMREX_GPU_MANAGED int FerroX::include_Grad;
 AMREX_GPU_MANAGED int FerroX::include_Elec;
 
 AMREX_GPU_MANAGED int FerroX::using_MRI;
+AMREX_GPU_MANAGED int FerroX::using_IMEX;
 AMREX_GPU_MANAGED int FerroX::fast_Landau;
 AMREX_GPU_MANAGED int FerroX::fast_Grad;
 AMREX_GPU_MANAGED int FerroX::fast_Elec;
@@ -424,7 +425,10 @@ void InitializeFerroXNamespace(const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM
 
      using_MRI = 0;
      pp.query("using_MRI",using_MRI);
-     
+
+     using_IMEX = 0;
+     pp.query("using_IMEX",using_IMEX);
+
      fast_Landau = 0;
      pp.query("fast_Landau",fast_Landau);
 

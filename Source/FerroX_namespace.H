@@ -111,5 +111,6 @@ namespace FerroX {
     extern AMREX_GPU_MANAGED int fast_Grad;
     extern AMREX_GPU_MANAGED int fast_Elec;
     extern AMREX_GPU_MANAGED int using_MRI;
+    extern AMREX_GPU_MANAGED int using_IMEX;
     extern AMREX_GPU_MANAGED amrex::Real fast_dt_ratio;
 }

@@ -413,16 +413,23 @@ void main_main (c_FerroX& rFerroX)
     };
     */
 
-    // Attach the right hand side and post-update functions
-    // to the integrator
-    integrator.set_rhs(rhs_fun);
-    //            integrator.set_post_step_action(post_update_fun);
-
-    integrator.set_time_step(dt);
-
+    // Attach the right hand side function(s)
     if (using_MRI) {
-        integrator.set_fast_time_step(fast_dt_ratio*dt);
-        integrator.set_fast_rhs(rhs_fast_fun);
+      integrator.set_rhs(rhs_fun);
+      integrator.set_fast_rhs(rhs_fast_fun);
+    }
+    else if (using_IMEX) {
+      integrator.set_imex_rhs(rhs_fast_fun, rhs_fun);
+      integrator.set_time_step(dt);
+    }
+    else {
+      integrator.set_rhs(rhs_fun);
+    }
+
+    // Set the time step size(s)
+    integrator.set_time_step(dt);
+    if (using_IMEX) {
+      integrator.set_fast_time_step(fast_dt_ratio*dt);
     }
 #endif
 
