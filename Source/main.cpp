@@ -293,7 +293,7 @@ void main_main (c_FerroX& rFerroX)
         ComputeEfromPhi(PoissonPhi, E, angle_alpha, angle_beta, angle_theta, geom, prob_lo, prob_hi);
 
         if (include_Landau == 1){
-            if(using_MRI && fast_Landau == 1){
+            if((using_MRI || using_IMEX) && fast_Landau == 1){
                 for (int idim=0; idim<AMREX_SPACEDIM; ++idim) {
                     GL_rhs_Landau[idim].setVal(0.);
                 }
@@ -302,7 +302,7 @@ void main_main (c_FerroX& rFerroX)
             }
         }
         if (include_Grad == 1){
-            if(using_MRI && fast_Grad == 1){
+            if((using_MRI || using_IMEX) && fast_Grad == 1){
                 for (int idim=0; idim<AMREX_SPACEDIM; ++idim) {
                     GL_rhs_grad[idim].setVal(0.);
                 }
@@ -311,7 +311,7 @@ void main_main (c_FerroX& rFerroX)
             }
         }
         if (include_Elec == 1){
-            if(using_MRI && fast_Elec == 1){
+            if((using_MRI || using_IMEX) && fast_Elec == 1){
                 for (int idim=0; idim<AMREX_SPACEDIM; ++idim) {
                     GL_rhs_elec[idim].setVal(0.);
                 }
@@ -420,7 +420,6 @@ void main_main (c_FerroX& rFerroX)
     }
     else if (using_IMEX) {
       integrator.set_imex_rhs(rhs_fast_fun, rhs_fun);
-      integrator.set_time_step(dt);
     }
     else {
       integrator.set_rhs(rhs_fun);
@@ -428,7 +427,7 @@ void main_main (c_FerroX& rFerroX)
 
     // Set the time step size(s)
     integrator.set_time_step(dt);
-    if (using_IMEX) {
+    if (using_MRI) {
       integrator.set_fast_time_step(fast_dt_ratio*dt);
     }
 #endif
