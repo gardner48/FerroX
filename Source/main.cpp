@@ -426,9 +426,11 @@ void main_main (c_FerroX& rFerroX)
     }
 
     // Set the time step size(s)
-    integrator.set_time_step(dt);
-    if (using_MRI) {
-      integrator.set_fast_time_step(fast_dt_ratio*dt);
+    if (!using_adaptive_step) {
+      integrator.set_time_step(dt);
+      if (using_MRI) {
+        integrator.set_fast_time_step(fast_dt_ratio*dt);
+      }
     }
 #endif
 
